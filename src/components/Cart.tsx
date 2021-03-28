@@ -17,7 +17,10 @@ const CartButton: React.FC = () => {
   return (
     <>
       <div className="absolute top-8 right-12" ref={cart}>
-        <span onClick={redirectToCheckout} className="cursor-pointer">
+        <span
+          onClick={items.length ? redirectToCheckout : () => {}}
+          className="cursor-pointer"
+        >
           <svg
             width="60"
             height="60"

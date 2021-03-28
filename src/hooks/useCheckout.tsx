@@ -13,7 +13,7 @@ const useCheckout = () => {
     const stripe = await getStripe();
     if (!stripe) return alert("Error with payment provider");
 
-    const red = await stripe.redirectToCheckout({
+    const redirect = await stripe.redirectToCheckout({
       mode: "payment",
       lineItems: items.map((item) => ({
         price: item.id,
@@ -26,7 +26,9 @@ const useCheckout = () => {
       cancelUrl: `${window.location.origin}/404/`,
     });
 
-    console.log("checkout", red);
+    if (redirect.error) {
+      console.log(redirect.error);
+    }
 
     return true;
   };

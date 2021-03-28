@@ -1,5 +1,7 @@
 const path = require("path");
-require("dotenv").config();
+require("dotenv").config({
+  path: ".env.development",
+});
 
 const secretKey = process.env.STRIPE_SECRET_KEY;
 
