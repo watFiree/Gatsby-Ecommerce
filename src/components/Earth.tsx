@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useFrame, useLoader, Canvas } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import earthImg from "images/earth.jpg";
@@ -32,7 +32,7 @@ const Earth = () => {
   });
 
   return (
-    <>
+    <Suspense fallback={null}>
       <spotLight intensity={0.4} position={[-1.3, 0.2, 5]} />
       <spotLight intensity={0.5} position={[-2, 0.2, 5.5]} />
       <spotLight intensity={0.6} position={[-7, 0.2, 6]} />
@@ -66,7 +66,7 @@ const Earth = () => {
           attach="material"
         />
       </mesh>
-    </>
+    </Suspense>
   );
 };
 

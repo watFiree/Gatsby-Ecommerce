@@ -9,13 +9,11 @@ const IndexPage = () => (
   <Layout background="index">
     <SideNavigation bgColor={false} />
 
-    <Suspense fallback={() => <h1>Loading ...</h1>}>
-      <main className="w-4/5 h-screen flex items-center">
-        <Canvas className="w-100 h-100">
-          <Earth />
-        </Canvas>
-      </main>
-    </Suspense>
+    <main className="w-4/5 h-screen flex items-center">
+      <Canvas className="w-100 h-100">
+        <Earth />
+      </Canvas>
+    </main>
   </Layout>
 );
 
