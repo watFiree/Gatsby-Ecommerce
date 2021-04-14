@@ -14,7 +14,7 @@ const CartPreviewProduct: React.FC<{ data: CartItem; isLast: boolean }> = ({
         !isLast ? "border-b" : ""
       }`}
     >
-      <button onClick={() => removeItem(data.id)} className="text-xl pl-3">
+      <button onClick={() => removeItem(data.id)} className="text-xl px-2">
         🗙
       </button>
       <div className="flex h-4/5 w-4/5">

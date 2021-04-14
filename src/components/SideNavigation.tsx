@@ -5,7 +5,9 @@ import Logo from "components/Logo";
 import Text from "components/Text";
 import { GithubIcon, LinkedinIcon } from "components/Icons";
 
-const SideNavigation: React.FC<{ bgColor?: boolean }> = ({ bgColor }) => {
+const SideNavigation: React.FC<{ bgColor?: boolean }> = ({
+  bgColor = true,
+}) => {
   return (
     <div
       className={`h-screen min-w-1/5 w-1/5 flex flex-col items-center justify-evenly py-16 ${
@@ -24,14 +26,14 @@ const SideNavigation: React.FC<{ bgColor?: boolean }> = ({ bgColor }) => {
         <Link to="/hoodies">
           <Text>HOODIES</Text>
         </Link>
-        <Link to="/accessories">
-          <Text>ACCESSORIES</Text>
+        <Link to="/gadgets">
+          <Text>GADGETS</Text>
         </Link>
       </nav>
 
       <footer className="w-1/4 justify-self-end flex flex-col align-center">
         <Text>CONTACT</Text>
-        <div className="mt-2 flex items-center gap-x-1">
+        <div className="mt-2 flex items-center justify-start gap-x-1">
           <GithubIcon />
           <LinkedinIcon />
         </div>

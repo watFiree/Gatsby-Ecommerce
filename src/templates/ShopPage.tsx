@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 
 import Layout from "components/Layout";
 import SideNavigation from "components/SideNavigation";
-import CartButton from "src/components/Cart";
+import CartButton from "components/Cart";
 import ProductCard from "components/ProductCard";
 
 interface DataProps {
@@ -36,10 +36,9 @@ const ShopPage: React.FC<{ data: DataProps }> = ({ data }) => {
     <Layout>
       <CartButton />
       <SideNavigation />
-      <main className="pt-16 px-12">
+      <main className="pt-16 px-12 h-screen w-4/5 grid grid-flow-row grid-cols-4 grid-rows-auto">
         {products.nodes.map((product) => {
           const sku = skus.nodes.find((item) => item.product.id === product.id);
-          console.log(sku);
           return (
             <ProductCard
               id={product.id}

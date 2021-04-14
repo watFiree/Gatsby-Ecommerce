@@ -7,7 +7,8 @@ import { CartItem } from "types";
 
 import Layout from "components/Layout";
 import SideNavigation from "components/SideNavigation";
-import Cart from "src/components/Cart";
+import Cart from "components/Cart";
+import ImagesSlider from "components/ImagesSider";
 
 interface DataProps {
   product: {
@@ -34,31 +35,29 @@ interface DataProps {
 
 const ProductPage: React.FC<{ data: DataProps }> = ({ data }) => {
   const { register, handleSubmit, errors } = useForm();
-  const { items, addItem } = useCart();
+  const { addItem } = useCart();
   const onSubmit = (data: { size: string | undefined }) => {
     if (!data.size) return alert("This size is not available");
     const item = JSON.parse(data.size) as CartItem;
     return addItem(item);
   };
+  const includesSize = data.product.attributes.includes("size");
+
+  console.log(data.skus.nodes[0].attributes);
 
   return (
     <Layout>
-      <SideNavigation />
+      <SideNavigation bgColor={true} />
       <Cart />
-      <main className="flex items-center justify-between w-4/5 pl-4 pr-44 ">
-        <div className="w-3/5 flex justify-center">
-          {data.product.images.map((image, index) => (
-            <img
-              className="w-2/3"
-              src={image}
-              alt={
-                slugify(data.product.name, { lower: true }) + "-image-" + index
-              }
-            />
-          ))}
+      <main className="flex items-center justify-between w-4/5 pl-4 pr-24 ">
+        <div className="w-3/5 h-screen flex items-center justify-center">
+          <ImagesSlider
+            productName={data.product.name}
+            images={data.product.images}
+          />
         </div>
 
-        <div className="w-2/5 flex items-center flex-col ">
+        <div className="w-2/5 h-screen flex flex-col items-center justify-center">
           <h2 className="text-gray-50 text-4xl font-medium">
             {data.product.name.toUpperCase()}
           </h2>
@@ -85,43 +84,45 @@ const ProductPage: React.FC<{ data: DataProps }> = ({ data }) => {
             onSubmit={handleSubmit(onSubmit)}
             className="pt-12 w-3/4 flex items-center justify-evenly"
           >
-            <select
-              name="size"
-              ref={register({
-                required: true,
-              })}
-              className="w-28 h-12 bg-blue-500 text-black font-medium uppercase pointer px-6 rounded-lg"
-            >
-              <option value="">Size</option>
-              {["XS", "S", "M", "L", "XL"].map((size) => {
-                const skuSized = data.skus.nodes.find(
-                  (sku) => sku.attributes.size === size
-                );
-                console.log(data.product.name);
-                const itemValue = skuSized
-                  ? {
-                      id: skuSized?.id,
-                      name: data.product.name,
-                      images: data.product.images,
-                      quantity: 1,
-                      price: skuSized?.price,
-                      currency: skuSized?.currency,
-                      size,
-                      productId: data.product.id,
-                    }
-                  : undefined;
+            {includesSize ? (
+              <select
+                name="size"
+                ref={register({
+                  required: true,
+                })}
+                className="w-28 h-12 bg-blue-500 text-black font-medium uppercase pointer px-6 rounded-lg"
+              >
+                <option value="">Size</option>
+                {["XS", "S", "M", "L", "XL"].map((size) => {
+                  const skuSized = data.skus.nodes.find(
+                    (sku) => sku.attributes.size === size
+                  );
+                  console.log(data.product.name);
+                  const itemValue = skuSized
+                    ? {
+                        id: skuSized?.id,
+                        name: data.product.name,
+                        images: data.product.images,
+                        quantity: 1,
+                        price: skuSized?.price,
+                        currency: skuSized?.currency,
+                        size,
+                        productId: data.product.id,
+                      }
+                    : undefined;
 
-                return (
-                  <option
-                    value={itemValue ? JSON.stringify(itemValue) : itemValue}
-                    disabled={!skuSized}
-                  >
-                    {size}
-                  </option>
-                );
-              })}
-            </select>
-            {errors.size && errors.size.type === "required"
+                  return (
+                    <option
+                      value={itemValue ? JSON.stringify(itemValue) : itemValue}
+                      disabled={!skuSized}
+                    >
+                      {size}
+                    </option>
+                  );
+                })}
+              </select>
+            ) : null}
+            {includesSize && errors.size && errors.size.type === "required"
               ? alert("Size is required")
               : null}
             <button

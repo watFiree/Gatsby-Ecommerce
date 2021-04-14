@@ -16,7 +16,13 @@ const CartButton: React.FC = () => {
   const [redirectToCheckout] = useCheckout();
   return (
     <>
-      <div className="absolute top-8 right-12" ref={cart}>
+      <div
+        className={`absolute top-8 right-12 ${
+          isHovering &&
+          "border-t-2 border-l-2 border-r-2 border-gray-100 top-6 right-10"
+        } `}
+        ref={cart}
+      >
         <span
           onClick={items.length ? redirectToCheckout : () => {}}
           className="cursor-pointer"

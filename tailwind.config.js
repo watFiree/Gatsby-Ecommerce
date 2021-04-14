@@ -6,8 +6,12 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: (theme) => ({
-        "home-background": "url(/src/images/home-bg.png)",
+        index:
+          'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/starfield.png")',
       }),
+      padding: {
+        "1/2": "50%",
+      },
     },
     colors: {
       ...colors,

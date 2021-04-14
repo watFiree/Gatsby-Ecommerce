@@ -9,23 +9,27 @@ const ProductCard: React.FC<{
   name: string;
   price: number;
   currency: string;
-}> = ({ id, image, name, price, currency }) => {
-  return (
-    <div
-      className="w-52 h-72 flex items-center flex-col cursor-pointer hover:opacity-90"
-      onClick={() => navigate("/" + id)}
-    >
+}> = ({ id, image, name, price, currency }) => (
+  <div
+    className="w-52 h-72 flex items-center flex-col cursor-pointer hover:opacity-90"
+    onClick={() => navigate("/" + id)}
+  >
+    {image.length ? (
       <img className="h-3/4 w-full" src={image} />
-      <div className="h-1/4 w-full bg-blue-500 flex items-center justify-center flex-col">
-        <Text>
-          <p className="text-black">{name.toUpperCase()}</p>
-        </Text>
-        <Text>
-          {price / 100} {currency.toUpperCase()}
-        </Text>
+    ) : (
+      <div className="h-full w-full bg-white text-black font-medium flex items-center justify-center">
+        NO IMAGE
       </div>
+    )}
+    <div className="h-1/4 w-full bg-blue-500 flex items-center justify-center flex-col">
+      <Text>
+        <p className="text-black">{name.toUpperCase()}</p>
+      </Text>
+      <Text>
+        {price / 100} {currency.toUpperCase()}
+      </Text>
     </div>
-  );
-};
+  </div>
+);
 
 export default ProductCard;

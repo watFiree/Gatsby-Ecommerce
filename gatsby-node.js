@@ -1,7 +1,7 @@
 exports.createPages = async ({ graphql, actions }) => {
   // create page for each catergory
   const ShopTemplate = require.resolve("./src/templates/ShopPage.tsx");
-  const categories = ["t-shirt", "hoodie"];
+  const categories = ["t-shirt", "hoodie", "gadget"];
 
   categories.forEach((category) => {
     actions.createPage({
@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
   // end
 
   //create page for each product

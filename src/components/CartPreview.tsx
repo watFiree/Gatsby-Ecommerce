@@ -8,7 +8,7 @@ const CartPreview = () => {
   const { items } = useCart();
   const [redirectToCheckout] = useCheckout();
   return (
-    <div className="absolute right-0 bg-gray-800 w-96 py-2 px-4 flex flex-col text-gray-50">
+    <div className="absolute -right-0.5 bg-gray-800 w-96 py-2 px-4 flex flex-col text-gray-50 border-2 border-gray-100">
       <h2 className="text-xl font-medium">Your Cart</h2>
       <div className="w-100 min-h-16 max-h-48 border-gray-300 border-t-2 border-b-2 my-2 overflow-y-auto">
         {items.length > 0 ? (
