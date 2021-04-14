@@ -1,17 +1,15 @@
-import React, { useState, Suspense } from "react";
-import { useFrame, useLoader, MeshProps } from "@react-three/fiber";
+import React, { useState } from "react";
+import { useFrame, useLoader, Canvas } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import earthImg from "images/earth.jpg";
 import earthBumpImg from "images/earthBump.jpg";
+import cloudsImg from "images/clouds.jpg";
+import cloudsAlphaImg from "images/cloudsAlpha.jpg";
 
 const Earth = () => {
   const earth = React.useRef<THREE.Mesh>();
   const clouds = React.useRef<THREE.Mesh>();
   const [hovered, setHover] = useState(false);
-  const cloudsImages = [
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/earthcloudmap.jpg",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/earthcloudmaptrans.jpg",
-  ];
   const [
     earthMap,
     earthBumpMap,
@@ -20,8 +18,8 @@ const Earth = () => {
   ] = useLoader(TextureLoader, [
     earthImg,
     earthBumpImg,
-    cloudsImages[0],
-    cloudsImages[1],
+    cloudsImg,
+    cloudsAlphaImg,
   ]);
 
   useFrame(() => {
@@ -34,7 +32,7 @@ const Earth = () => {
   });
 
   return (
-    <Suspense fallback={null}>
+    <>
       <spotLight intensity={0.4} position={[-1.3, 0.2, 5]} />
       <spotLight intensity={0.5} position={[-2, 0.2, 5.5]} />
       <spotLight intensity={0.6} position={[-7, 0.2, 6]} />
@@ -68,7 +66,7 @@ const Earth = () => {
           attach="material"
         />
       </mesh>
-    </Suspense>
+    </>
   );
 };
 
