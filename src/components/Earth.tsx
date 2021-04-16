@@ -1,6 +1,8 @@
 import React, { Suspense, useState } from "react";
-import { useFrame, useLoader, Canvas } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
+
+import Box from "./Box";
 import earthImg from "images/earth.jpg";
 import earthBumpImg from "images/earthBump.jpg";
 import cloudsImg from "images/clouds.jpg";
@@ -32,11 +34,7 @@ const Earth = () => {
   });
 
   return (
-    <Suspense fallback={null}>
-      <spotLight intensity={0.4} position={[-1.3, 0.2, 5]} />
-      <spotLight intensity={0.5} position={[-2, 0.2, 5.5]} />
-      <spotLight intensity={0.6} position={[-7, 0.2, 6]} />
-
+    <group>
       <mesh
         position={[0.5, 0, 3]}
         ref={earth}
@@ -66,7 +64,7 @@ const Earth = () => {
           attach="material"
         />
       </mesh>
-    </Suspense>
+    </group>
   );
 };
 
