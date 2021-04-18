@@ -2,7 +2,6 @@ import React, { Suspense, useState } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 
-import Box from "./Box";
 import earthImg from "images/earth.jpg";
 import earthBumpImg from "images/earthBump.jpg";
 import cloudsImg from "images/clouds.jpg";

@@ -11,8 +11,8 @@ const Box = () => {
   });
   return (
     <mesh position={[0.5, 0, 1]} ref={mesh}>
-      <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color="yellow" />
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="gray" />
     </mesh>
   );
 };

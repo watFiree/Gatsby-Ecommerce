@@ -1,39 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { useForm } from "react-hook-form";
-import slugify from "slugify";
 import useCart from "hooks/useCart";
-import { CartItem } from "types";
+import { ProductPageProps as Data, CartItem } from "types";
 
 import Layout from "components/Layout";
 import SideNavigation from "components/SideNavigation";
 import Cart from "components/Cart";
 import ImagesSlider from "components/ImagesSider";
 
-interface DataProps {
-  product: {
-    id: string;
-    images: string[];
-    active: string;
-    attributes: string[];
-    name: string;
-  };
-  skus: {
-    nodes: {
-      id: string;
-      active: boolean;
-      attributes: {
-        size: string;
-        type: string;
-        gender: string;
-      };
-      currency: string;
-      price: number;
-    }[];
-  };
-}
-
-const ProductPage: React.FC<{ data: DataProps }> = ({ data }) => {
+const ProductPage: React.FC<{ data: Data }> = ({ data }) => {
   const { register, handleSubmit, errors } = useForm();
   const { addItem } = useCart();
   const onSubmit = (data: { size: string | undefined }) => {

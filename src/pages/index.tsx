@@ -6,10 +6,8 @@ import SideNavigation from "components/SideNavigation";
 import Earth from "components/Earth";
 import Box from "components/Box";
 
-// const Earth = React.lazy(() => import("components/Earth"));
-
 const IndexPage = () => (
-  <Layout background="index">
+  <div className="h-screen w-screen flex bg-index">
     <SideNavigation bgColor={false} />
 
     <main className="w-4/5 h-screen flex items-center">
@@ -22,7 +20,7 @@ const IndexPage = () => (
         </Suspense>
       </Canvas>
     </main>
-  </Layout>
+  </div>
 );
 
 export default IndexPage;

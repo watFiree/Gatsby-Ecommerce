@@ -8,6 +8,7 @@ module.exports = {
       backgroundImage: (theme) => ({
         index:
           'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/starfield.png")',
+        space: 'url("/src/images/404.jpg")',
       }),
       padding: {
         "1/2": "50%",

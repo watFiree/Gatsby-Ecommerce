@@ -1,36 +1,13 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { ShopPageProps as Data } from "types";
 
 import Layout from "components/Layout";
 import SideNavigation from "components/SideNavigation";
 import CartButton from "components/Cart";
 import ProductCard from "components/ProductCard";
 
-interface DataProps {
-  products: {
-    nodes: {
-      id: string;
-      name: string;
-      images: string[];
-      active: boolean;
-    }[];
-  };
-  skus: {
-    nodes: {
-      price: number;
-      currency: string;
-      attributes: {
-        type: string;
-        size: string;
-      };
-      product: {
-        id: string;
-      };
-    }[];
-  };
-}
-
-const ShopPage: React.FC<{ data: DataProps }> = ({ data }) => {
+const ShopPage: React.FC<{ data: Data }> = ({ data }) => {
   const { products, skus } = data;
   return (
     <Layout>
