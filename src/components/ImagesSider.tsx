@@ -8,7 +8,23 @@ const ImagesSlider: React.FC<{ productName: string; images: string[] }> = ({
   return (
     <div className="w-100 h-100 flex items-center justify-evenly">
       {position > 0 ? (
-        <button onClick={() => setPosition(position - 1)}>left</button>
+        <button onClick={() => setPosition(position - 1)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-arrow-big-left"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z" />
+          </svg>
+        </button>
       ) : null}
       <img
         className="w-4/5"
@@ -16,7 +32,23 @@ const ImagesSlider: React.FC<{ productName: string; images: string[] }> = ({
         alt={productName + "-image-" + position}
       />
       {position < images.length - 1 ? (
-        <button onClick={() => setPosition(position + 1)}>right</button>
+        <button onClick={() => setPosition(position + 1)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-arrow-big-right"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ffffff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z" />
+          </svg>
+        </button>
       ) : null}
     </div>
   );

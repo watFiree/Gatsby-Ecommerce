@@ -1,7 +1,7 @@
 import React from "react";
 
 export const GithubIcon = ({ width = 36, height = 36, color = "white" }) => (
-  <a href="https://github.com/watFiree">
+  <a href="https://github.com/watFiree" aria-label="GitHub">
     <svg
       width={width}
       height={height}
@@ -21,7 +21,10 @@ export const GithubIcon = ({ width = 36, height = 36, color = "white" }) => (
 );
 
 export const LinkedinIcon = ({ width = 44, height = 44, color = "white" }) => (
-  <a href="https://www.linkedin.com/in/karol-piotrowicz-1a13411a2/">
+  <a
+    href="https://www.linkedin.com/in/karol-piotrowicz-1a13411a2/"
+    aria-label="Linkedin"
+  >
     <svg
       width={width}
       height={height}
