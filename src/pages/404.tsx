@@ -1,12 +1,13 @@
 import * as React from "react";
 import { navigate } from "gatsby";
 
+import SEO from "components/SEO";
 import Button from "components/Button";
 
 const NotFoundPage = () => {
   return (
     <main className="w-full h-screen bg-index flex flex-col justify-center items-center text-white">
-      <title>Not found</title>
+      <SEO title="Not Found" />
 
       <h1 className="text-9xl">404</h1>
       <h2 className="text-4xl my-6">Looks like you are lost</h2>

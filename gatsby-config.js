@@ -7,10 +7,13 @@ const secretKey = process.env.STRIPE_SECRET_KEY;
 
 module.exports = {
   siteMetadata: {
-    title: "SpaceY Shop",
+    title: `SpaceY`,
+    description: `Spacey-Wear Online shop`,
+    author: `watFiree`,
   },
   plugins: [
     "gatsby-plugin-postcss",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-root-import",
       options: {

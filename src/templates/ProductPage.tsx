@@ -5,6 +5,7 @@ import useCart from "hooks/useCart";
 import { ProductPageProps as Data, CartItem } from "types";
 
 import Layout from "components/Layout";
+import SEO from "components/SEO";
 import SideNavigation from "components/SideNavigation";
 import Cart from "components/Cart";
 import ImagesSlider from "components/ImagesSider";
@@ -12,17 +13,18 @@ import ImagesSlider from "components/ImagesSider";
 const ProductPage: React.FC<{ data: Data }> = ({ data }) => {
   const { register, handleSubmit, errors } = useForm();
   const { addItem } = useCart();
+
   const onSubmit = (data: { size: string | undefined }) => {
     if (!data.size) return alert("This size is not available");
     const item = JSON.parse(data.size) as CartItem;
     return addItem(item);
   };
-  const includesSize = data.product.attributes.includes("size");
 
-  console.log(data.skus.nodes[0].attributes);
+  const includesSize = data.product.attributes.includes("size");
 
   return (
     <Layout>
+      <SEO title={data.product.name} />
       <SideNavigation bgColor={true} />
       <Cart />
       <main className="flex items-center justify-between w-4/5 pl-4 pr-24 ">

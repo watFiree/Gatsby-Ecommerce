@@ -27,7 +27,6 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  console.log("node", result);
   const products = result.data.allStripeProduct.nodes;
 
   products.forEach((product) => {

@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { NewestPageProps as Data } from "types";
 
 import Layout from "components/Layout";
+import SEO from "components/SEO";
 import SideNavigation from "components/SideNavigation";
 import Cart from "components/Cart";
 import ProductCard from "components/ProductCard";
@@ -11,6 +12,7 @@ const newest: React.FC<{ data: Data }> = ({ data }) => {
   const { products, skus } = data;
   return (
     <Layout>
+      <SEO />
       <SideNavigation />
       <Cart />
       <main className="pt-16 px-12 h-screen w-4/5 grid grid-flow-row grid-cols-4 grid-rows-auto">

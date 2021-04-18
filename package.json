@@ -19,14 +19,17 @@
     "@stripe/stripe-js": "^1.13.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.32.8",
+    "gatsby-plugin-react-helmet": "^4.3.0",
     "gatsby-source-stripe": "^3.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^6.15.4",
     "slugify": "^1.4.7",
     "three": "^0.127.0"
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.1",
     "@types/three": "^0.127.0",
     "autoprefixer": "^10.2.4",
     "gatsby-plugin-postcss": "^3.7.0",
