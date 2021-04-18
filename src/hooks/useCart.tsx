@@ -43,8 +43,19 @@ export const CartProvider: React.FC = ({ children }) => {
     return setItems((prev) => [...prev, newItem]);
   };
 
-  const removeItem = (id: string) =>
-    setItems((prev) => prev.filter((cartItem) => cartItem.id !== id));
+  const removeItem = (id: string) => {
+    const itemInCart = items.find((item) => item.id === id);
+    if (itemInCart && itemInCart.quantity > 1) {
+      return setItems((prev) =>
+        prev.map((cartItem) =>
+          cartItem.id === id
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+      );
+    }
+    return setItems((prev) => prev.filter((cartItem) => cartItem.id !== id));
+  };
 
   const defaultContext = {
     items,
