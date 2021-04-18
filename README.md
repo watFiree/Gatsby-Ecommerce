@@ -4,45 +4,86 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby minimal starter
+  SpaceY - Gatsby Ecommerce
 </h1>
 
-## 🚀 Quick start
+## 🚀 Preview images
 
-1.  **Create a Gatsby site.**
+<img src="https://i.ibb.co/HNQ0ysH/spacey1.png" alt="spacey1" width="90%" border="0">
+<img src="https://i.ibb.co/vZnJVbV/spacey2.png" alt="spacey2" width="90%" border="0">
+<img src="https://i.ibb.co/h89CK3m/spacey3.png" alt="spacey3" width="90%" border="0">
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## 🔧 Tech
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+- Gatsby
+- Typescript
+- Stripe
+- Tailwind CSS
+- React Three Fiber
+- React Hook Form
 
-2.  **Start developing.**
+## 📍 Live
 
-    Navigate into your new site’s directory and start it up.
+[spacey.wear](https://spacey.gatsbyjs.io/)
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+## 📗 Code snippets
 
-3.  **Open the code and start customizing!**
+```javascript
+const attributes = ["size", "type", "name", "gender"];
+const genders = ["Men", "Women", "Unisex"];
+const sizes = ["XS", "S", "M", "L", "XL"];
 
-    Your site is now running at http://localhost:8000!
+const createProductAndSkus = async (
+  name,
+  gender,
+  price,
+  attributes,
+  metadata,
+  sizes,
+  type = "good"
+) => {
+  const product = await stripe.products.create({
+    name,
+    attributes,
+    metadata,
+    type,
+  });
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+  if (sizes.length) {
+    sizes.forEach(async (size) => {
+      await stripe.skus.create({
+        attributes: {
+          sizes,
+          gender,
+          type: metadata.type,
+          name: `${name} ${size.toUpperCase()}`,
+        },
+        price,
+        currency: "eur",
+        inventory: { type: "infinite" },
+        product: product.id,
+      });
+    });
+  } else {
+    await stripe.skus.create({
+      attributes: {
+        gender,
+        type: metadata.type,
+        name,
+      },
+      price,
+      currency: "eur",
+      inventory: { type: "infinite" },
+      product: product.id,
+    });
+  }
+};
 
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+const addImageToProduct = async (id, image) => {
+  const product = await stripe.products.retrieve(id);
+  const updatedProduct = await stripe.products.update(id, {
+    images: [...product.images, image],
+  });
+  return updatedProduct;
+};
+```
